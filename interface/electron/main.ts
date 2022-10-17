@@ -29,7 +29,6 @@ class Main {
   }
 
   private static onClose() {
-    // Dereference the window object.
     Main.win = null;
   }
 

@@ -9,8 +9,11 @@ declare global {
         ) => Promise<OpenDialogReturnValue>;
       };
     };
+    SERVER_URL: string;
   }
 }
+
+window.SERVER_URL = "http://localhost:5000";
 
 import "../src/index.css";
 
