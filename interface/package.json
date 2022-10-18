@@ -1,5 +1,6 @@
 {
   "name": "interface",
+  "productName": "שרת הקבצים",
   "version": "0.1.0",
   "main": ".webpack/main",
   "author": "zivnadel",

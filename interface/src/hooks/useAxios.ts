@@ -1,7 +1,10 @@
 import React from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const useAxios = () => {
+const useAxios = (reloadOnFinish: boolean = false) => {
+  const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState("");
 
@@ -31,11 +34,18 @@ const useAxios = () => {
           (reqCtrl) => reqCtrl !== abortController
         );
 
-        setIsLoading(false);
+        if (reloadOnFinish) {
+          navigate(0);
+        }
 
         return response.data;
       } catch (err: any) {
-        setError(err.message || "משהו השתבש, נסה שוב מאוחר יותר");
+        setError(
+          err.response.data.message ||
+            err.message ||
+            "משהו השתבש, נסה שוב מאוחר יותר"
+        );
+      } finally {
         setIsLoading(false);
       }
     },

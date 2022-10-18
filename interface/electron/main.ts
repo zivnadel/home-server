@@ -1,10 +1,4 @@
-import {
-  app,
-  BrowserWindow,
-  dialog,
-  ipcMain,
-  OpenDialogOptions,
-} from "electron";
+import { app, BrowserWindow, dialog, ipcMain } from "electron";
 
 import fs from "fs";
 import fsp from "fs/promises";
@@ -31,15 +25,15 @@ class Main {
       height: 600,
       width: 800,
       autoHideMenuBar: true,
+      icon: path.join(__dirname, "..", "..", "assets", "icon.png"),
       webPreferences: {
+        devTools: !app.isPackaged,
         contextIsolation: true,
         preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       },
     });
 
     Main.win.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
-
-    Main.win.webContents.openDevTools();
   }
 
   private static onClose() {
