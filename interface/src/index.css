@@ -5,3 +5,7 @@
 body {
   background-color: #1f2937;
 }
+
+::-webkit-scrollbar {
+  background: transparent;
+}

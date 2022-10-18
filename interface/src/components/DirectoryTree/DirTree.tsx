@@ -24,6 +24,8 @@ const DirTree: React.FC<Props> = ({ dirTree }) => {
     return (
       <ul key={dirTree.path} className="text-lg">
         <Folder
+          root={dirTree.path === "root"}
+          initialCollapsed={collapsed.includes(dirTree.path)}
           setCollapsed={setCollapsed}
           path={dirTree.path}
           name={dirTree.name}
@@ -36,6 +38,7 @@ const DirTree: React.FC<Props> = ({ dirTree }) => {
               } else {
                 return (
                   <File
+                    path={child.path}
                     key={child.path}
                     extension={child.extension}
                     name={child.name}

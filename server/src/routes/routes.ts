@@ -1,14 +1,24 @@
 import express from "express";
 
-import dirTree from "directory-tree";
 import upload from "../middlewares/upload";
+import {
+  getDirectoryTree,
+  getFiles,
+  addFiles,
+  deleteFiles,
+} from "../controllers/controllers";
+import authorize from "../middlewares/authorize";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send(dirTree("root", { attributes: ["type", "extension"] }));
-});
+router.get("/", getDirectoryTree);
 
-router.post("/", upload.any());
+router.get("/root/*", getFiles);
+
+router.post("/", upload.any(), addFiles);
+
+router.use("/", authorize);
+
+router.delete("/", deleteFiles);
 
 export default router;

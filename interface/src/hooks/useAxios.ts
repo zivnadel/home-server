@@ -1,5 +1,5 @@
 import React from "react";
-import axios, { AxiosRequestHeaders } from "axios";
+import axios from "axios";
 
 const useAxios = () => {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -12,7 +12,7 @@ const useAxios = () => {
       url: string,
       method: string = "GET",
       data?: any,
-      headers?: AxiosRequestHeaders
+      headers?: any
     ) => {
       setIsLoading(true);
       const abortController = new AbortController();

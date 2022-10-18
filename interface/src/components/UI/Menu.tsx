@@ -10,7 +10,7 @@ interface Props {
 
 const Menu: React.FC<Props> = ({ setIsOpen }) => {
   return (
-    <menu className="animate-slide-from-right right-0 m-3 fixed w-36 h-40 bg-white/90 rounded-md">
+    <menu className="z-10 animate-slide-from-right right-0 m-3 fixed w-36 h-40 bg-white rounded-md">
       <ul className="mt-3 flex flex-col justify-center items-center h-full w-full">
         <Link to="/" onClick={() => setIsOpen(false)}>
           <li className="text-xl cursor-pointer hover:opacity-60 flex items-center justify-between m-3 my-2 font-semibold drop-shadow-md">

@@ -10,7 +10,7 @@ const Hamburger: React.FC<Props> = ({ onClick, isOpen }) => {
 
   return (
     <button
-      className="right-0 z-10 m-3 flex fixed flex-col h-12 w-12 justify-center items-center group"
+      className="right-0 z-20 m-3 flex fixed flex-col h-12 w-12 justify-center items-center group"
       onClick={onClick}
     >
       <div

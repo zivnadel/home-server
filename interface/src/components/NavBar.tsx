@@ -1,8 +1,8 @@
 import React from "react";
-import Hamburger from "./UI/Hamburger";
+import Hamburger from "./UI/Buttons/Hamburger";
 import Menu from "./UI/Menu";
 
-const Nav = () => {
+const NavBar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const hamburgerClickedHandler = () => {
@@ -17,4 +17,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default NavBar;
