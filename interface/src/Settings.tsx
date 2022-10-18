@@ -28,8 +28,14 @@ const Settings = () => {
   const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    window.SERVER_URL = serverUrl || window.SERVER_URL;
-    window.SERVER_PORT = serverPort || window.SERVER_PORT;
+    localStorage.setItem(
+      "SERVER_URL",
+      serverUrl || localStorage.getItem("SERVER_URL") || "http://localhost"
+    );
+    localStorage.setItem(
+      "SERVER_PORT",
+      serverPort || localStorage.getItem("SERVER_PORT") || "5000"
+    );
 
     navigate("/");
   };
@@ -45,7 +51,7 @@ const Settings = () => {
             label="כתובת השרת"
             required
             icon={<FaServer />}
-            initialValue={window.SERVER_URL}
+            initialValue={localStorage.getItem("SERVER_URL")}
             value={serverUrl}
             onChange={serverUrlChangedHandler}
           />
@@ -54,7 +60,7 @@ const Settings = () => {
             label="פורט"
             required
             icon={<FaServer />}
-            initialValue={window.SERVER_PORT}
+            initialValue={localStorage.getItem("SERVER_PORT")}
             value={serverPort}
             onChange={serverPortChangedHandler}
           />

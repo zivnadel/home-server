@@ -20,7 +20,9 @@ const File: React.FC<Props> = ({ name, extension, path }) => {
 
   const downloadFile = async () => {
     await window.electron.downloadFile(
-      `${window.SERVER_URL}:${window.SERVER_PORT}`,
+      `${localStorage.getItem("SERVER_URL")}:${localStorage.getItem(
+        "SERVER_PORT"
+      )}`,
       path
     );
   };

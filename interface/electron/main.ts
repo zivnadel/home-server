@@ -5,9 +5,13 @@ import {
   ipcMain,
   OpenDialogOptions,
 } from "electron";
+
+import fs from "fs";
+import fsp from "fs/promises";
+import path from "path";
 import FormData from "form-data";
-import { createReadStream } from "fs";
-import fs from "fs/promises";
+
+import dirTree from "directory-tree";
 import axios from "axios";
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
@@ -48,15 +52,10 @@ class Main {
 
     ipcMain.handle(
       "selectAndSendFiles",
-      async (
-        _,
-        dialogOptions: OpenDialogOptions,
-        dest: string,
-        url: string
-      ) => {
-        const { filePaths, canceled } = await dialog.showOpenDialog(
-          dialogOptions
-        );
+      async (_, dest: string, url: string) => {
+        const { filePaths, canceled } = await dialog.showOpenDialog({
+          properties: ["openFile", "multiSelections"],
+        });
 
         if (!canceled) {
           const formData = new FormData();
@@ -64,8 +63,67 @@ class Main {
           formData.append("path", dest);
 
           filePaths.forEach((path, index) => {
-            formData.append(path.split("\\").pop(), createReadStream(path));
+            formData.append(path.split("\\").pop(), fs.createReadStream(path));
           });
+
+          await axios.post(url, formData);
+
+          Main.win.reload();
+        }
+      }
+    );
+
+    ipcMain.handle(
+      "selectAndSendFolder",
+      async (_, dest: string, url: string) => {
+        const createFormData = (tree: any, formData: FormData) => {
+          tree.children.forEach((child: any) => {
+            if (child.type === "directory") {
+              createFormData(child, formData);
+            } else {
+              formData.append(child.path, child.file);
+            }
+          });
+        };
+
+        const { filePaths, canceled } = await dialog.showOpenDialog({
+          properties: ["openDirectory"],
+        });
+
+        const folderName = path.basename(filePaths[0]);
+
+        if (!canceled) {
+          const tree = dirTree(
+            filePaths[0],
+            {
+              attributes: ["type"],
+            },
+            async (item, PATH, stats) => {
+              (item as any).file = fs.createReadStream(item.path);
+              const splittedPath = `${dest}\\${folderName}\\${PATH.split(
+                `\\${folderName}\\`
+              ).pop()}`;
+              if (splittedPath.endsWith("\\")) {
+                item.path = splittedPath.substring(0, splittedPath.length - 1);
+              } else {
+                item.path = splittedPath;
+              }
+            },
+            (item, PATH, stats) => {
+              const splittedPath = `${dest}\\${folderName}\\${PATH.split(
+                `\\${folderName}\\`
+              ).pop()}`;
+              if (splittedPath.endsWith("\\")) {
+                item.path = splittedPath.substring(0, splittedPath.length - 1);
+              } else {
+                item.path = splittedPath;
+              }
+            }
+          );
+
+          const formData = new FormData();
+
+          createFormData(tree, formData);
 
           await axios.post(url, formData);
 
@@ -84,7 +142,7 @@ class Main {
           responseType: "stream",
         });
 
-        await fs.writeFile(
+        await fsp.writeFile(
           `${filePaths[0]}\\${path.split("\\").pop()}`,
           res.data
         );
@@ -105,12 +163,15 @@ class Main {
         const generateFolder = async (tree: any, currentPath: string) => {
           for (const child of tree.children) {
             if (child.type === "directory") {
-              await fs.mkdir(`${filePaths[0]}\\${currentPath}\\${child.name}`, {
-                recursive: true,
-              });
+              await fsp.mkdir(
+                `${filePaths[0]}\\${currentPath}\\${child.name}`,
+                {
+                  recursive: true,
+                }
+              );
               await generateFolder(child, `${currentPath}\\${child.name}`);
             } else {
-              await fs.writeFile(
+              await fsp.writeFile(
                 `${filePaths[0]}\\${currentPath}\\${child.name}`,
                 child.file,
                 "base64"
@@ -119,7 +180,7 @@ class Main {
           }
         };
 
-        await fs.mkdir(`${filePaths[0]}\\${splittedPath}`, {
+        await fsp.mkdir(`${filePaths[0]}\\${splittedPath}`, {
           recursive: true,
         });
         await generateFolder(tree, splittedPath);

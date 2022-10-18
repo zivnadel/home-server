@@ -12,7 +12,11 @@ const Home = () => {
   const { isLoading, error, sendRequest, clearError } = useAxios();
 
   React.useEffect(() => {
-    sendRequest(`${window.SERVER_URL}:${window.SERVER_PORT}`).then((res) => {
+    sendRequest(
+      `${localStorage.getItem("SERVER_URL")}:${localStorage.getItem(
+        "SERVER_PORT"
+      )}`
+    ).then((res) => {
       setDirTree(res);
     });
   }, [sendRequest]);

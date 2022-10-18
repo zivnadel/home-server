@@ -34,14 +34,9 @@ const useAxios = () => {
         setIsLoading(false);
 
         return response.data;
-      } catch (error: any) {
-        if (axios.isAxiosError(error)) {
-          setError((error as any).response.data.message);
-        } else {
-          setError(error.message || "Something went wrong, please try again.");
-        }
+      } catch (err: any) {
+        setError(err.message || "משהו השתבש, נסה שוב מאוחר יותר");
         setIsLoading(false);
-        throw error;
       }
     },
     []

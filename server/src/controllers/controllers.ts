@@ -15,7 +15,7 @@ export const getFiles = async (req: Request, res: Response) => {
   const tree = dirTree(
     dirname,
     {
-      attributes: ["type", "extension"],
+      attributes: ["type"],
     },
     async (item, PATH, stats) => {
       (item as any).file = fs.readFileSync(item.path, "base64");

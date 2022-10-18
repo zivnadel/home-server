@@ -48,24 +48,30 @@ const Folder: React.FC<Props> = ({
   };
 
   const uploadFile = async () => {
-    const res = await window.electron.selectAndSendFiles(
-      {
-        properties: ["openFile", "multiSelections"],
-      },
+    await window.electron.selectAndSendFiles(
       path,
-      `${window.SERVER_URL}:${window.SERVER_PORT}`
+      `${localStorage.getItem("SERVER_URL")}:${localStorage.getItem(
+        "SERVER_PORT"
+      )}`
     );
 
     navigate("/");
   };
 
-  const createFolder = () => {
-    console.log(path);
+  const createFolder = async () => {
+    await window.electron.selectAndSendFolder(
+      path,
+      `${localStorage.getItem("SERVER_URL")}:${localStorage.getItem(
+        "SERVER_PORT"
+      )}`
+    );
   };
 
   const downloadFolder = async () => {
     await window.electron.downloadFolder(
-      `${window.SERVER_URL}:${window.SERVER_PORT}`,
+      `${localStorage.getItem("SERVER_URL")}:${localStorage.getItem(
+        "SERVER_PORT"
+      )}`,
       path
     );
   };
@@ -91,7 +97,9 @@ const Folder: React.FC<Props> = ({
             } cursor-pointer hover:opacity-60 inline mr-1`}
           />
         )}
-        <span className="bg-gray-600 rounded-lg px-1">{name}</span>
+        <span className="bg-gray-600 rounded-lg px-1">
+          {name === "root" ? "שרת הקבצים" : name}
+        </span>
         <AiFillFolderAdd
           onClick={createFolder}
           className="cursor-pointer hover:opacity-60 inline ml-2 text-emerald-600"

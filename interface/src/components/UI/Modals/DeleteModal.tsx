@@ -28,7 +28,9 @@ const DeleteModal: React.FC<Props> = ({ setShowModal, path }) => {
     e.preventDefault();
 
     sendRequest(
-      `${window.SERVER_URL}:${window.SERVER_PORT}`,
+      `${localStorage.getItem("SERVER_URL")}:${localStorage.getItem(
+        "SERVER_PORT"
+      )}`,
       "DELETE",
       {
         path,

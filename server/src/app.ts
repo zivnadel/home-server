@@ -1,7 +1,10 @@
 import express, { Request, Response, NextFunction } from "express";
+import dotenv from "dotenv";
 
 import routes from "./routes/routes";
 import HttpError from "./utils/HttpError";
+
+dotenv.config();
 
 const app = express();
 
