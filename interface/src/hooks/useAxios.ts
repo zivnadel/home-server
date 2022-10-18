@@ -40,11 +40,11 @@ const useAxios = (reloadOnFinish: boolean = false) => {
 
         return response.data;
       } catch (err: any) {
-        setError(
-          err.response.data.message ||
-            err.message ||
-            "משהו השתבש, נסה שוב מאוחר יותר"
-        );
+        if (err.response) {
+          setError(err.response.data.message);
+        } else {
+          setError(err.message || "משהו השתבש, נסה שוב מאוחר יותר");
+        }
       } finally {
         setIsLoading(false);
       }

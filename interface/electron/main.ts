@@ -25,7 +25,7 @@ class Main {
       height: 600,
       width: 800,
       autoHideMenuBar: true,
-      icon: path.join(__dirname, "..", "..", "assets", "icon.png"),
+      icon: path.join(__dirname, "..", "..", "assets", "icon.ico"),
       webPreferences: {
         devTools: !app.isPackaged,
         contextIsolation: true,
