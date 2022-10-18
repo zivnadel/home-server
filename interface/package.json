@@ -2,6 +2,8 @@
   "name": "interface",
   "version": "0.1.0",
   "main": ".webpack/main",
+  "author": "zivnadel",
+  "description": "GUI to communicate with an Express file-managment server",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -61,14 +63,7 @@
       ]
     }
   },
-  "dependencies": {
-    "axios": "^1.1.3",
-    "electron-squirrel-startup": "^1.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.6.0",
-    "react-router-dom": "^6.4.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.67",
     "@electron-forge/maker-deb": "^6.0.0-beta.67",
@@ -93,6 +88,12 @@
     "tailwind-merge": "^1.6.2",
     "tailwindcss": "^3.1.8",
     "ts-loader": "^9.2.2",
-    "typescript": "~4.5.4"
+    "typescript": "~4.5.4",
+    "axios": "^1.1.3",
+    "electron-squirrel-startup": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.6.0",
+    "react-router-dom": "^6.4.2"
   }
 }
