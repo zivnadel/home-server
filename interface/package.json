@@ -20,7 +20,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "שרת הקבצים"
+            "name": "interface"
           }
         },
         {
