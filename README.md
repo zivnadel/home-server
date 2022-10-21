@@ -42,7 +42,7 @@ You are ready to go!
 **Make sure you have node installed on the machine you want to host the server on.** Download the zipped folder containing the server from the latest release in the releases tab and extract in. Edit the .env file using any text editor and fill those variables:
 ```
 DELETE_PASSWORD: The interface requires users to type a password upon file/folder deletion. Configure your password in this variable.
-PORT: The port you server will be running on.
+PORT: The port your server will be running on.
 ```
 Open the folder in the Command Prompt and run ```npm install``` to install dependencies. After that, run ```npm start```. The server should be up and running.
 
