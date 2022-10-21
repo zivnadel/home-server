@@ -52,13 +52,13 @@ Open the folder in the Command Prompt and run ```npm install``` to install depen
 - The server URL will be the internal IP address of the device hosting the server. You can get that using the ```ipconfig``` command or other tools.
 - The server can be hosted on any OS running node, but the GUI is Windows only.
 
-## Technologies Used
-
-TypeScript, Electron.js, Webpack, Electron Forge, React.js, react-router-dom (v6), Tailwind CSS, Axios, Node.js, Express.js, Multer and more.
-
 ## Coming Soon
 
 I will add more features to this system when needed, as well as additional interface for mobile devices (probably in React Native).
+
+## Technologies Used
+
+TypeScript, Electron.js, Webpack, Electron Forge, React.js, react-router-dom (v6), Tailwind CSS, Axios, Node.js, Express.js, Multer and more.
 
 ## License
 
