@@ -14,7 +14,7 @@ In the main page, there is a view of the directory tree of the system, and you c
 In the settings page, you can configure the URL of the server, and the port in use by the server. This setting is required to establish a connection to the server.
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/52624380/197210145-76cb577e-9634-4318-b5b2-3608bb63e62f.png" width="480" height="360" /> <img src="https://user-images.githubusercontent.com/52624380/197208289-0b151710-1b8f-48a3-a31a-b41ae15bd87b.png" width="480" height="360" />
+  <img src="https://user-images.githubusercontent.com/52624380/197210145-76cb577e-9634-4318-b5b2-3608bb63e62f.png" width="450" height="337" /> <img src="https://user-images.githubusercontent.com/52624380/197208289-0b151710-1b8f-48a3-a31a-b41ae15bd87b.png" width="450" height="337" />
 </div>
 
 In the menu (opened with the hamburger button), you can access the pages as well as changing the language (options are English and Hebrew. Default is Hebrew).
