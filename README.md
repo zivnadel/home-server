@@ -24,3 +24,5 @@ TypeScript, Electron.js, Webpack, Electron Forge, React.js, react-router-dom (v6
 I will add more features to this system when needed, as well as additional interface for mobile devices (probably in React Native).
 
 ## License
+
+This is an open source software under [MIT License](https://github.com/zivnadel/home-server/blob/master/LICENSE.md).
