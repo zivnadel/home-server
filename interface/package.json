@@ -1,7 +1,7 @@
 {
   "name": "interface",
   "productName": "Home Server",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": ".webpack/main",
   "author": "zivnadel",
   "description": "GUI to communicate with an Express file-managment server",

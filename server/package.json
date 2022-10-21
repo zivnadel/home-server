@@ -1,6 +1,8 @@
 {
   "name": "server",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "author": "zivnadel",
+  "description": "Simple file-management server built with Node and Express",
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only src/app.ts"
