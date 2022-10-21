@@ -1,4 +1,5 @@
 import React from "react";
+import LangContext from "../../store/LangContext";
 
 interface Props {
   label?: string;
@@ -25,11 +26,15 @@ const Input: React.FC<Props> = ({
 }) => {
   const [touched, setTouched] = React.useState(false);
 
+  const langContext = React.useContext(LangContext);
+
   return (
     <div className={className}>
       <label
         htmlFor="input-group-1"
-        className="block mb-2 text-sm text-light text-right font-medium"
+        className={`block mb-2 text-sm text-light ${
+          langContext.isEnglish ? "text-left" : "text-right"
+        } font-medium`}
       >
         {label}
       </label>

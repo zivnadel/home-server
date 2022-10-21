@@ -14,10 +14,15 @@ module.exports = {
       },
       animation: {
         "slide-from-right": "slide-from-right 0.1s ease-out",
+        "slide-from-left": "slide-from-left 0.1s ease-out",
       },
       keyframes: {
         "slide-from-right": {
           "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+        "slide-from-left": {
+          "0%": { transform: "translateX(-100%)" },
           "100%": { transform: "translateX(0%)" },
         }
       }

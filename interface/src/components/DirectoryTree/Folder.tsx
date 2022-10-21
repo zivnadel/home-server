@@ -10,6 +10,7 @@ import {
 } from "react-icons/ai";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 import DeleteModal from "../UI/Modals/DeleteModal";
+import LangContext from "../../store/LangContext";
 
 interface Props {
   name: string;
@@ -31,6 +32,8 @@ const Folder: React.FC<Props> = ({
   const [collapseIcon, setCollapseIcon] = React.useState(initialCollapsed);
 
   const navigate = useNavigate();
+
+  const langContext = React.useContext(LangContext);
 
   const toggleCollapse = () => {
     setCollapsed((prev) => {
@@ -98,7 +101,7 @@ const Folder: React.FC<Props> = ({
           />
         )}
         <span className="bg-gray-600 rounded-lg px-1">
-          {name === "root" ? "שרת הקבצים" : name}
+          {name === "root" && !langContext.isEnglish ? "שרת הקבצים" : name}
         </span>
         <AiFillFolderAdd
           onClick={createFolder}

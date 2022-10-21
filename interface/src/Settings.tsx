@@ -6,12 +6,15 @@ import { useNavigate } from "react-router-dom";
 import Button from "./components/UI/Buttons/Button";
 
 import Input from "./components/UI/Input";
+import LangContext from "./store/LangContext";
 
 const Settings = () => {
   const [serverUrl, setServerUrl] = React.useState("");
   const [serverPort, setServerPort] = React.useState("");
 
   const navigate = useNavigate();
+
+  const langContext = React.useContext(LangContext);
 
   const serverUrlChangedHandler = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -48,7 +51,7 @@ const Settings = () => {
       >
         <div className="flex">
           <Input
-            label="כתובת השרת"
+            label={langContext.isEnglish ? "Server URL" : "כתובת השרת"}
             required
             icon={<FaServer />}
             initialValue={localStorage.getItem("SERVER_URL")}
@@ -57,7 +60,7 @@ const Settings = () => {
           />
           <span className="text-light text-4xl mt-6 mr-5 ml-5">:</span>
           <Input
-            label="פורט"
+            label={langContext.isEnglish ? "Port" : "פורט"}
             required
             icon={<FaServer />}
             initialValue={localStorage.getItem("SERVER_PORT")}
@@ -65,7 +68,7 @@ const Settings = () => {
             onChange={serverPortChangedHandler}
           />
         </div>
-        <Button type="submit">החל</Button>
+        <Button type="submit">{langContext.isEnglish ? "Apply" : "החל"}</Button>
       </form>
     </div>
   );

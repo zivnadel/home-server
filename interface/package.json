@@ -1,6 +1,6 @@
 {
   "name": "interface",
-  "productName": "שרת הקבצים",
+  "productName": "Home Server",
   "version": "0.1.0",
   "main": ".webpack/main",
   "author": "zivnadel",
@@ -20,7 +20,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "interface"
+            "name": "HomeServer"
           }
         },
         {
